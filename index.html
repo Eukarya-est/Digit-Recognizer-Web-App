@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js">
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <title>Digit Recognizer</title>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/et-lineicon.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+	</head>
+	<body>
+
+        <!-- Preloader -->
+        <div class="animationload">
+            <div class="loader">
+                Loading...
+                <span></span>
+            </div>
+        </div> 
+        <!-- End Preloader -->
+
+        <!-- =========================
+                 HOME
+        ========================== -->
+
+		<section id="home">
+			<div class="content">
+                <div id="large-header" class="large-header">
+                    <canvas id="demo-canvas"></canvas>
+                    <div id="countdown_dashboard" class="home-main container">
+                        <div class="row">
+                            <div class="logo">
+                                <img src="images/logo.png" alt="logo">
+                                <p></p>
+                                <p style="color:#555555;">Scroll down</p>
+                                <img src="images/scrolldown.gif" alt="scrolldown", width="40" height="40">
+                            </div>
+                        </div> <!-- END ROW -->
+                    </div> <!-- END COUNTDOWN -->
+                </div> <!-- LARGE HEADER -->
+            </div> <!-- END CONTENT -->
+        </section>
+
+        <!-- =========================
+                 TOOL-INFO
+        ========================== -->
+        <div class="input_container">
+            <div class="drawing_board">
+                <canvas id="canvas" width="280" height="280" style="border:3px solid #483d8b"></canvas>
+            </div>
+            <div class="tool_board">
+                <div class="row">
+                    <ul class="button_board">
+                        <button class="input_drawing">Input</button>
+                        <p></p>
+                        <button class="clear_canvas">Clear</button>
+                    </ul>
+                </div>
+                <div class="row">
+                    <ul class="info_board">
+                        <canvas id="img_preview" width="28" height="28" style="border:1px solid #CCC"></canvas>
+                        <p></p>
+                        <li class="prediction" id="prediction">Prediction : </li>
+                        <p></p>
+                    </ul>
+                </div>
+            </div>
+            <div class="chart">
+                <div>
+                    <div class="digit">
+                        <img src="images/digit0.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar0"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat0">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit1.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar1"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat1">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit2.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar2"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat2">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit3.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar3"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat3">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit4.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar4"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat4">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit5.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar5"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat5">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit6.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar6"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat6">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit7.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar7"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat7">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit8.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar8"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat8">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit9.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar9"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat9">0%</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =========================
+                 FOOTER
+        ========================== -->
+
+        <footer class="footer">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="social list-inline">
+                            <li class="social-btn" id="gh"><a href="https://github.com/pdg2619/Works"><i class="fa fa-github"></i></a></li>
+                            <li class="social-btn" id="lkd"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="copyright">Created by #</p>
+                </div>
+            </div>
+        </footer>
+            
+        <!-- JAVASCRIPTS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/animated.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/canvas.js"></script>
+	</body>
+</html>
